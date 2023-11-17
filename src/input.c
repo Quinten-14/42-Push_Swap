@@ -6,7 +6,7 @@
 /*   By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:04:42 by qraymaek          #+#    #+#             */
-/*   Updated: 2023/11/17 18:54:31 by qraymaek         ###   ########.fr       */
+/*   Updated: 2023/11/17 19:00:14 by qraymaek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_stack	*enter_input_string(char **av)
     while (split[i])
     {
         checks(split[i], stack_a);
-        stack_a = stack_push(stack_a, ft_atoi(split[i]));
+        stack_a = add_node(stack_a, ft_atoi(split[i]));
         i++;
     }
 

@@ -6,7 +6,7 @@
 /*   By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:14:51 by qraymaek          #+#    #+#             */
-/*   Updated: 2023/11/17 18:50:35 by qraymaek         ###   ########.fr       */
+/*   Updated: 2023/11/17 18:59:53 by qraymaek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	check_dup(t_stack *stack_a)
 			if (tmp->nbr == tmp2->nbr)
 			{
 				ft_putendl("Error");
+				free_on_error(stack_a);
 				exit(0);
 			}
 			tmp2 = tmp2->next;
