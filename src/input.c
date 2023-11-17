@@ -6,7 +6,7 @@
 /*   By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:04:42 by qraymaek          #+#    #+#             */
-/*   Updated: 2023/11/17 18:46:30 by qraymaek         ###   ########.fr       */
+/*   Updated: 2023/11/17 18:54:31 by qraymaek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,27 @@
 
 t_stack	*enter_input_string(char **av)
 {
-	t_stack *stack_a;
-	char	**split;
-	int		i;
+	t_stack	*stack_a = NULL;
+    int	i = 0;
+    char	**split = ft_split(av[1], ' ');
 
-	i = 0;
-	stack_a = NULL;
-	split = ft_split(av[1], ' ');
-	while (split[i])
-	{
-		checks(split[i], stack_a);
-		stack_a = add_node(stack_a, ft_atoi(split[i]));
-		i++;
-	}
-	return (stack_a);
+    while (split[i])
+    {
+        checks(split[i], stack_a);
+        stack_a = stack_push(stack_a, ft_atoi(split[i]));
+        i++;
+    }
+
+    // Free the split array
+    i = 0;
+    while (split[i])
+    {
+        free(split[i]);
+        i++;
+    }
+    free(split);
+
+    return (stack_a);
 }
 
 t_stack	*enter_input_seperate(int ac, char **av)
