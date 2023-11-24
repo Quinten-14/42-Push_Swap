@@ -6,19 +6,11 @@
 /*   By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:09:20 by qraymaek          #+#    #+#             */
-/*   Updated: 2023/11/16 18:07:05 by qraymaek         ###   ########.fr       */
+/*   Updated: 2023/11/24 23:58:06 by qraymaek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-static void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest_n)
-{
-	while (*b != cheapest_n->target && *a != cheapest_n)
-		rr(a, b);
-	current_index(*a);
-	current_index(*b);
-}
 
 static void	rev_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest_n)
 {
@@ -32,9 +24,9 @@ static void	move_a_to_b(t_stack **a, t_stack **b)
 {
 	t_stack	*cheapest_n;
 
-	cheapest_n = find_cheapest(*a); // still needs to be made
+	cheapest_n = find_cheapest(*a);
 	if (cheapest_n->above_median && cheapest_n->target->above_median)
-		rotate_both(a, b, cheapest_n);
+		rotate_both_stacks(a, b, cheapest_n);
 	else if (!(cheapest_n->above_median) && !(cheapest_n->target->above_median))
 		rev_rotate_both(a, b, cheapest_n);
 	prep_for_push(a, cheapest_n, 'a');

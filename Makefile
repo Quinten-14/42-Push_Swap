@@ -6,41 +6,68 @@
 #    By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 20:18:57 by qraymaek          #+#    #+#              #
-#    Updated: 2023/11/17 20:26:29 by qraymaek         ###   ########.fr        #
+#    Updated: 2023/11/24 23:49:42 by qraymaek         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra
-NAME	= push_swap
+# Basics
+NAME = push_swap
+INCLUDES = includes
+SRCS_DIR = src
+OBJS_DIR = objs
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g
+RM = rm -rf
+LIBFT = libft
 
-SRC_PATH = src/
-OBJ_PATH = obj/
+# Colors
+DEF_COLOR = \033[0;39m
+GRAY = \033[0;90m
+RED = \033[0;91m
+GREEN = \033[0;92m
+YELLOW = \033[0;93m
+BLUE = \033[0;94m
+MAGENTA = \033[0;95m
+CYAN = \033[0;96m
+WHITE = \033[0;97m
 
-SRC		= big_sort.c checks.c cost_utils.c free.c input.c libft_functions.c move_utils.c \
-			push_swap.c push.c rev_rotate.c rotate.c sort_three.c stack.c swap.c
-SRCS	= $(addprefix $(SRC_PATH), $(SRC))
-OBJ		= $(SRC:.c=.o)
-OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
-INCS	= -I ./includes/
+SOURCES = big_sort.c checks.c cost_utils.c free.c input.c \
+	  move_utils.c push.c push_swap.c rev_rotate.c \
+	  rotate.c sort_three.c stack.c swap.c libft_functions.c
 
-all: $(OBJ_PATH) $(NAME)
+SRCS = $(addprefix $(SRCS_DIR)/,$(SOURCES))
+OBJS = $(addprefix $(OBJS_DIR)/,$(SOURCES:.c=.o))
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)
+all: lib tmp $(NAME)
 
-$(OBJ_PATH):
-	mkdir $(OBJ_PATH)
+lib:
+	@echo "$(GREEN)Creating lib files$(BLUE)"
+	@make -C $(LIBFT)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+tmp:
+	@mkdir -p objs
+
+ $(NAME): $(OBJS)
+	$(CC) $(FLAGS) -L $(LIBFT) -o $@ $^ -lft -lm
+	@echo "$(GREEN)Project successfully compiled"
+
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCLUDES)/$(NAME).h
+	@$(CC) $(FLAGS) -c -o $@ $<
+	@echo "$(BLUE)Creating object file -> $(WHITE)$(notdir $@)... $(RED)[Done]$(WHITE)"
 
 clean:
-	rm -rf $(OBJ_PATH)
+	@echo "$(RED)Deleting library files$(BLUE)"
+	@make clean -C $(LIBFT)
+	@rm -rf $(OBJS_DIR)
 
-fclean: clean
-	rm -f $(NAME)
+fclean:
+	@echo "$(RED)Deleting library files and .a$(BLUE)"
+	@rm -rf $(OBJS_DIR)
+	@rm -f $(NAME)
+	@make fclean -C $(LIBFT)
+	@echo "$(RED)All the files are now cleaned with fclean"
 
-re: fclean all
+re: fclean
+	@$(MAKE) all -j
 
-.PHONY: all clean fclean re
+.PHONY: tmp, re, fclean, clean

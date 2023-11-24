@@ -35,8 +35,8 @@ void	current_index(t_stack *stack)
 
 static void	set_target_a(t_stack *a, t_stack *b)
 {
-	t_stack *current_b;
-	t_stack *target_node;
+	t_stack	*current_b;
+	t_stack	*target_node;
 	long	best_match;
 
 	while (a)

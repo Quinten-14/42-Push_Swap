@@ -6,15 +6,15 @@
 /*   By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:19:44 by qraymaek          #+#    #+#             */
-/*   Updated: 2023/11/17 18:21:39 by qraymaek         ###   ########.fr       */
+/*   Updated: 2023/11/24 23:55:26 by qraymaek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int		stack_len(t_stack *stack)
+int	stack_len(t_stack *stack)
 {
-	int		len;
+	int	len;
 
 	len = 0;
 	while (stack)
@@ -27,7 +27,7 @@ int		stack_len(t_stack *stack)
 
 t_stack	*find_max(t_stack *stack)
 {
-	long			max;
+	long	max;
 	t_stack	*max_node;
 
 	if (!stack)
@@ -71,4 +71,12 @@ t_stack	*add_node(t_stack *stack, long nbr)
 	tmp->next = new;
 	new->prev = tmp;
 	return (stack);
+}
+
+void	rotate_both_stacks(t_stack **a, t_stack **b, t_stack *cheapest_n)
+{
+	while (*b != cheapest_n->target && *a != cheapest_n)
+		rr(a, b);
+	current_index(*a);
+	current_index(*b);
 }

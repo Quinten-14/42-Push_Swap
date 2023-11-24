@@ -6,14 +6,14 @@
 /*   By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 20:16:14 by qraymaek          #+#    #+#             */
-/*   Updated: 2023/10/15 20:31:03 by qraymaek         ###   ########.fr       */
+/*   Updated: 2023/11/24 23:43:12 by qraymaek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static void	ft_len(int n, size_t *len, int *sign)
+static void	ft_len_itoa(int n, size_t *len, int *sign)
 {
 	*len = 0;
 	*sign = 1;
@@ -35,7 +35,7 @@ char	*ft_itoa(int n)
 	int		sign;
 	char	*str;
 
-	ft_len(n, &len, &sign);
+	ft_len_itoa(n, &len, &sign);
 	str = (char *)malloc(sizeof(char) * (len + 2));
 	if (!str)
 		return (NULL);

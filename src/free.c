@@ -14,24 +14,24 @@
 
 void	free_on_error(t_stack *stack)
 {
-    t_stack *tmp;
+	t_stack	*tmp;
 
-    while (stack)
-    {
-        tmp = stack;
-        stack = stack->next;
-        if (tmp)
-        {
-            free(tmp);
-            tmp = NULL;
-        }
-    }
+	while (stack)
+	{
+		tmp = stack;
+		stack = stack->next;
+		if (tmp)
+		{
+			free(tmp);
+			tmp = NULL;
+		}
+	}
 }
 
 void	free_stack(t_stack **stack)
 {
 	t_stack	*tmp;
-	t_stack *current;
+	t_stack	*current;
 
 	if (!stack)
 		return ;

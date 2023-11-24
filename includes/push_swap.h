@@ -6,7 +6,7 @@
 /*   By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 20:52:15 by qraymaek          #+#    #+#             */
-/*   Updated: 2023/11/17 18:51:17 by qraymaek         ###   ########.fr       */
+/*   Updated: 2023/11/24 23:57:02 by qraymaek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void				ss(t_stack **a, t_stack **b);
 void				ra(t_stack **a);
 void				rb(t_stack **b);
 void				rr(t_stack **a, t_stack **b);
+void				rotate_both_stacks(t_stack **a, t_stack **b,
+						t_stack *cheapest_n);
 
 // reverse rotate operations
 void				rra(t_stack **a);
@@ -68,11 +70,12 @@ t_stack				*add_node(t_stack *stack, long nbr);
 int					stack_len(t_stack *stack);
 
 // check sorted
-bool					sorted(t_stack *stack);
+bool				sorted(t_stack *stack);
 
 // move utils
 t_stack				*find_cheapest(t_stack *stack);
-void				prep_for_push(t_stack **stack, t_stack *top_node, char stack_name);
+void				prep_for_push(t_stack **stack, t_stack *top_node,
+						char stack_name);
 
 // algorithm
 void				sort_three(t_stack **a);
@@ -93,9 +96,6 @@ void				ft_putchar(char c);
 void				ft_putnbr(long n);
 void				ft_putstr(char *str);
 void				ft_putendl(char *str);
-int					ft_isdigit(int i);
-long				ft_atoi(const char *str);
-char				**ft_split(const char *s, char c);
 
 // input
 t_stack				*get_input(int ac, char **av);

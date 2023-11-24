@@ -6,14 +6,14 @@
 #    By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/11 21:19:28 by ncolomer          #+#    #+#              #
-#    Updated: 2023/11/15 00:06:46 by qraymaek         ###   ########.fr        #
+#    Updated: 2023/11/24 23:46:06 by qraymaek         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Standard
 
 NAME		=	libft.a
-INCLUDES	=	../include
+INCLUDES	=	../includes
 SRCS_DIR 	=	src/
 OBJS_DIR	=	obj/
 CC			=	cc
@@ -59,9 +59,6 @@ FTLST		=	ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone \
 FTBIT_DIR	=	bits/
 FTBIT		=	ft_clearbit ft_isbitset ft_setbit ft_togglebit
 
-FTPRINTF_DIR =	ft_printf/
-FTPRINTF 	= ft_hex ft_letters ft_numbers ft_putpointer ft_printf
-
 SRC_FILES+=$(addprefix $(FTIS_DIR),$(FTIS))
 SRC_FILES+=$(addprefix $(FTMEM_DIR),$(FTMEM))
 SRC_FILES+=$(addprefix $(FTPUT_DIR),$(FTPUT))
@@ -69,7 +66,6 @@ SRC_FILES+=$(addprefix $(FTTO_DIR),$(FTTO))
 SRC_FILES+=$(addprefix $(FTSTR_DIR),$(FTSTR))
 SRC_FILES+=$(addprefix $(FTLST_DIR),$(FTLST))
 SRC_FILES+=$(addprefix $(FTBIT_DIR),$(FTBIT))
-SRC_FILES+=$(addprefix $(FTPRINTF_DIR),$(FTPRINTF))
 
 SRCS 		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS 		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
@@ -98,7 +94,6 @@ $(OBJSF):
 			@mkdir -p $(OBJS_DIR)$(FTSTR_DIR)
 			@mkdir -p $(OBJS_DIR)$(FTLST_DIR)
 			@mkdir -p $(OBJS_DIR)$(FTBIT_DIR)
-			@mkdir -p $(OBJS_DIR)$(FTPRINTF_DIR)
 
 clean:
 			@$(RM) -rf $(OBJS_DIR)
