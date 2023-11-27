@@ -6,7 +6,7 @@
 #    By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 20:18:57 by qraymaek          #+#    #+#              #
-#    Updated: 2023/11/24 23:49:42 by qraymaek         ###   ########.fr        #
+#    Updated: 2023/11/27 19:56:40 by qraymaek         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = push_swap
 INCLUDES = includes
 SRCS_DIR = src
 OBJS_DIR = objs
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 LIBFT = libft
@@ -59,6 +59,7 @@ clean:
 	@echo "$(RED)Deleting library files$(BLUE)"
 	@make clean -C $(LIBFT)
 	@rm -rf $(OBJS_DIR)
+	@echo "$(Green)Objects are cleaned"
 
 fclean:
 	@echo "$(RED)Deleting library files and .a$(BLUE)"
@@ -67,7 +68,6 @@ fclean:
 	@make fclean -C $(LIBFT)
 	@echo "$(RED)All the files are now cleaned with fclean"
 
-re: fclean
-	@$(MAKE) all -j
+re: fclean all
 
 .PHONY: tmp, re, fclean, clean

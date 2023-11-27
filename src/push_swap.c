@@ -6,11 +6,17 @@
 /*   By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:02:46 by qraymaek          #+#    #+#             */
-/*   Updated: 2023/11/17 18:26:36 by qraymaek         ###   ########.fr       */
+/*   Updated: 2023/11/27 20:04:12 by qraymaek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void	print_error(void)
+{
+	write(2, "Error\n", 6);
+	exit(1);
+}
 
 bool	sorted(t_stack *stack)
 {
@@ -30,10 +36,9 @@ int	main(int ac, char **av)
 
 	stack_b = NULL;
 	if (ac < 2)
-	{
-		ft_putendl("Error");
 		return (0);
-	}
+	if (ac == 2 && av[1][0] == '\0')
+		print_error();
 	stack_a = get_input(ac, av);
 	check_dup(stack_a);
 	if (!stack_a)
